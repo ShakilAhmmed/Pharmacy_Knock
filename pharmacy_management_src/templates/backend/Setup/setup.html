@@ -1,0 +1,83 @@
+<!-- Page Content -->
+{% extends 'backend/index.html' %}
+{% block title %} Admin|Setup {% endblock title %}
+{% block main_content %}
+<div class="wraper container-fluid">
+    <div class="row">
+        <!-- Basic example -->
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Setup</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{form.company_title.id_for_label}}">{{form.company_title.label}}</label>
+                            {{form.company_title}}
+                            <div class="text-danger">{{form.company_title.errors}}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{form.company_address.id_for_label}}">{{form.company_address.label}}</label>
+                            {{form.company_address}}
+                            <div class="text-danger">{{form.company_address.errors}}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{form.company_email.id_for_label}}">{{form.company_email.label}}</label>
+                            {{form.company_email}}
+                            <div class="text-danger">{{form.company_email.errors}}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{form.company_phone.id_for_label}}">{{form.company_phone.label}}</label>
+                            {{form.company_phone}}
+                            <div class="text-danger">{{form.company_phone.errors}}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company_logo">Company Logo</label>
+                            {{form.company_logo}}
+                            <div class="text-danger">{{form.company_logo.errors}}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleCoverImage"></label>
+                            <img id="image_upload_preview" style="width: 20%;" {% if image %} src="{{image}}" {% else %}
+                                 src="http://placehold.it/100x100" {% endif %} alt="your image"/>
+                        </div>
+
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-purple">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div><!-- panel-body -->
+            </div>
+            <!-- panel -->
+        </div>
+        <!-- col-->
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#image_upload_preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#inputFile").change(function () {
+            readURL(this);
+        });
+    </script>
+    {% endblock main_content %}

@@ -1,0 +1,87 @@
+<!-- Page Content -->
+{% extends 'backend/index.html' %}
+{% block title %} Admin|Home {% endblock title %}
+{% block main_content %}
+<div class="wraper container-fluid">
+
+  				<div class="row">
+            <div class="col-md-2"></div>
+  					<div class="col-md-8">
+  						<div class="panel panel-default">
+  							<div class="panel-heading">
+  								<h3 class="panel-title">Medicine Sell Details</h3>
+  							</div>
+  							<div class="panel-body">
+
+  								<form class="form-horizontal" role="form">
+
+  									<div class="form-group">
+  										<label class="col-md-5 control-label">Coustomer Name</label>
+  										<div class="col-md-7">
+
+  													<i class="fa"></i> {{ medicine_coustomer.coustomer_name }}
+  										</div>
+  									</div>
+                    <div class="form-group">
+                      <label class="col-md-5 control-label">Coustomer contact</label>
+                      <div class="col-md-7">
+
+                            <i class="fa"></i> {{medicine_coustomer.coustomer_contact}}
+
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-5 control-label">Medicine Buy Date</label>
+                      <div class="col-md-7">
+
+                            <i class="fa"></i> {{ medicine_coustomer.medicine_buy_date }}
+
+                      </div>
+                    </div>
+  									<!-- form-group -->
+
+
+  								</form>
+                  <hr>
+
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Medicine Name</th>
+                          <th>Total Course</th>
+                          <th>Total Buy</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for sell_data_fetch in sell_data %}
+                        <tr>
+                          <td>{{forloop.counter}}</td>
+                          <td>{{sell_data_fetch.medicine_name}}</td>
+                          <td>{{sell_data_fetch.total_course}}</td>
+                          <td>{{sell_data_fetch.total_buy}}</td>
+
+                        </tr>
+                        {% endfor %}
+
+
+                      </tbody>
+                    </table>
+                  </div>
+  							</div>
+  							<!-- panel-body -->
+  						</div>
+  						<!-- panel -->
+
+
+
+
+  					</div>
+  					<!-- col -->
+
+
+
+  				</div>
+        </div>
+{% endblock main_content %}

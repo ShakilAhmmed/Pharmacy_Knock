@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Admina Bootstrap Admin. This is the demo of Admina. You need to purchase a license for legal use!">
+		<meta name="author" content="DownTown Themes">
+
+		<link rel="shortcut icon" href="assets/img/icon.png">
+
+		<title>{% block title %}{% endblock title %}</title>
+
+        {% include 'layouts/_admin_css.html' %}
+
+	</head>
+
+	<body>
+
+		  {% include 'layouts/_admin_header.html' %}
+		<!-- End Header -->
+
+		<!-- Aside Menu -->
+		{% include 'layouts/_admin_sidebar.html' %}
+		<!-- End Aside -->
+
+		<!--Main Content -->
+		<section class="content">
+			{% block main_content %}{% endblock main_content%}
+		</section>
+		
+	{% include 'layouts/_admin_footer.html' %}
+	{% include 'layouts/demo.html' %}	
+
+	{% include 'layouts/_admin_js.html' %}
+	</body>
+</html>

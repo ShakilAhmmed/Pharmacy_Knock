@@ -1,0 +1,164 @@
+{% extends 'backend/index.html' %}
+{% block title %} Admin|Home {% endblock title %}
+{% block main_content %}
+<div class="wraper container-fluid">
+    <div class="row">
+    <!-- Basic example -->
+        <div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="panel panel-default">
+                    <div class="panel-heading">
+						<h3 class="panel-title">Add New Patient</h3>
+					</div>
+                    <div class="panel-body">
+						<form role="form" action="" method="POST">
+              {% csrf_token %}
+							<div class="form-group">
+								<label for="{{form.coustomer_name.id_for_label}}">
+                  {{form.coustomer_name.label}}</label>
+                  {{form.coustomer_name}}
+								<div class="text-danger"> {{form.coustomer_name.errors}}</div>
+							</div>
+							<div class="form-group">
+								<label for="{{form.coustomer_contact.id_for_label}}">
+                  {{form.coustomer_contact.label}}</label>
+                   {{form.coustomer_contact}}
+								<div class="text-danger"> {{form.coustomer_contact.errors}}</div>
+							</div>
+              <div class="form-group">
+                <label for="{{form.medicine_buy_date.id_for_label}}">
+                  {{form.medicine_buy_date.label}}</label>
+                  {{form.medicine_buy_date}}
+								<div class="text-danger">
+                  {{form.medicine_buy_date.errors}}</div>
+							</div>
+
+              <hr>
+              <div class="field_wrapper">
+
+
+              </div>
+
+              <div class="form-group">
+                  <div class="col-md-4">
+                      <input title="medicine_name_add" type="text" name="medicine_name[]" placeholder="Medicine Name" class="form-control medicine_name" >
+                  </div>
+                  <div class="col-md-3">
+                      <input title="total_course_add"   type="text" name="total_course[]" style="width: 169px;" placeholder="Total Course" class="form-control total_course">
+                  </div>
+                  <div class="col-md-3">
+                       <input title="total_buy_add"  type="text" name="total_buy[]" style="width: 169px; margin-left: 20px;" placeholder="Total Buy" class="form-control total_buy">
+                  </div>
+                  <div class="col-md-2">
+                        <span id="add_button" style="margin-left: 33px;" class="btn btn-primary add_button"><i class="ion-plus-round"></i></span>\
+                  </div>
+              </div>
+
+              <br><br><br>
+              <!-- Text input-->
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-purple sumbit_medicine">  Submit</button>
+							</div>
+            </form>
+          </div><!-- panel-body -->
+        </div>
+        <!-- panel -->
+      </div>
+      <!-- col-->
+   </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+var maxField = 10; //Input fields increment limitation
+   var addButton = $('.add_button'); //Add button selector
+   var wrapper = $('.field_wrapper'); //Input field wrapper
+   var fieldHTML = '<var><span class="remove_div"><div class="form-group">\
+                    <div class="col-md-4">\
+                     <input title="medicine_name_add" name="medicine_name[]" type="text"  placeholder="Medicine Name" class="form-control medicine_name" >\
+                   </div>\
+                   <div class="col-md-3">\
+                     <input title="total_course_add" name="total_course[]" type="text" style="width: 169px;"  placeholder="Total Course" class="form-control total_course">\
+                   </div>\
+                   <div class="col-md-3">\
+                     <input title="total_buy_add"  name="total_buy[]" type="text" style="width: 169px; margin-left: 20px;" placeholder="Total Buy" class="form-control total_buy">\
+                  </div>\
+                  <div class="col-md-2">\
+                    <span id="remove_button" style="margin-left: 33px;" class="btn btn-danger remove_button"><i class="ion-trash-b"></i></span>\
+                  </div>\
+                  </div><br><br><span></var>'; //New input field html
+   var x = 1; //Initial field counter is 1
+
+   //Once add button is clicked
+   $(addButton).click(function(){
+       //Check maximum number of input fields
+
+       if(x < maxField){
+           x++; //Increment field counter
+           $(wrapper).append(fieldHTML); //Add field html
+}
+   });
+
+   //Once remove button is clicked
+   $(wrapper).on('click', '.remove_button', function(e) {
+     e.preventDefault();
+     $(".add_button").attr("disabled", false);
+      $(this).closest("var").find(".remove_div").remove(); //Remove field html
+       x--;
+});
+
+$(".add_button").hover(function() {
+  var medicine_name = document.querySelector(".form-group input[name='medicine_name[]']");
+  var total_course = document.querySelector(".form-group input[name='total_course[]']");
+  var total_buy = document.querySelector(".form-group input[name='total_buy[]']");
+
+// // var medicine_name=$(".medicine_name").val();
+// //   var total_course=$(".total_course").val();
+// //   var total_buy=$(".total_buy").val();
+// //
+  if(medicine_name.value =='' || total_course.value=='' || total_buy.value=='')
+  {
+    $(".add_button").attr("disabled", true);
+
+
+}
+
+
+});
+
+$(".sumbit_medicine").hover(function(){
+  var medicine_name = document.querySelector(".form-group input[name='medicine_name[]']");
+  var total_course = document.querySelector(".form-group input[name='total_course[]']");
+  var total_buy = document.querySelector(".form-group input[name='total_buy[]']");
+  if(medicine_name.value =='' || total_course.value=='' || total_buy.value=='')
+  {
+    $(".sumbit_medicine").attr("disabled", true);
+    swal("", "Filed Are Required", "warning");
+
+
+  }
+
+
+});
+});
+
+$(document).on("keyup",".total_buy",function() {
+  var total_buy = document.querySelector(".form-group input[name='total_buy[]']");
+
+   if(total_buy !='')
+   {
+       $(".add_button").attr("disabled", false);
+         $(".sumbit_medicine").attr("disabled", false);
+  }
+});
+
+
+
+</script>
+
+  {% endblock main_content %}

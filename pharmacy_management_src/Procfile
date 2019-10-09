@@ -1,0 +1,1 @@
+web: pharmacy_management_src.wsgi --log-file -

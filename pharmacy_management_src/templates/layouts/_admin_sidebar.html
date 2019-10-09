@@ -1,0 +1,55 @@
+	<aside class="left-panel">
+
+			<!-- Navbar -->
+			<nav class="navigation">
+				<ul class="list-unstyled">
+					<li class="active">
+						<a href="index-2.html"><i class="ion-home"></i> <span class="nav-label">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="../desktop/index.html"><i class="fa fa-laptop"></i> <span class="nav-label">Desktop Admin</span></a>
+					</li>
+
+					<li>
+						<a href="{% url 'add_patient' %}"><i class="ion-home"></i> <span class="nav-label">Patient</span></a>
+					</li>
+
+
+					<li>
+						<a href="{% url 'patient_list' %}"><i class="ion-home"></i> <span class="nav-label">Patient Report</span></a>
+					</li>
+					<li>
+						<a href="{% url 'medicine' %}"><i class="ion-home"></i> <span class="nav-label">Medicine Sell</span></a>
+					</li>
+					<li>
+						<a href="{% url 'medicine_list' %}"><i class="ion-home"></i> <span class="nav-label">Medicine Sell Report</span></a>
+					</li>
+                <!--
+					<li class="has-submenu">
+						<a href="#"><i class="ion-settings"></i> <span class="nav-label">Patient</span> <span class="caret pull-right m-t-10"></span></a>
+						<ul class="list-unstyled">
+							<li>
+								<a href="">Add Patient</a>
+							</li>
+							<li>
+								<a href="">Patient Report</a>
+							</li>
+						</ul>
+					</li>
+                    -->
+
+					<li>
+						<a href="{% url 'profile' %}"><i class="ion-home"></i> <span class="nav-label">Profile</span></a>
+					</li>
+
+                    <li>
+						<a href="{% url 'setup' %}"><i class="ion-home"></i> <span class="nav-label">Setup</span></a>
+					</li>
+
+
+
+				</ul>
+			</nav>
+			<!-- End Navbar -->
+
+		</aside>
